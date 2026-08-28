@@ -46,10 +46,12 @@ def main():
         #      https://github.com/pyinstaller/pyinstaller/issues/9149
         '--exclude-module=pkg_resources',
         '--noconfirm',
+        '--noconsole',
         '--additional-hooks-dir=yt_dlp/__pyinstaller',
         '--add-data=THIRD_PARTY_LICENSES.txt:.',
+        '--add-data=bin;bin',
         *opts,
-        'yt_dlp/__main__.py',
+        'app_gui.py',
     ]
 
     print(f'Running PyInstaller with {opts}')
@@ -74,11 +76,7 @@ def exe(onedir):
         'darwin': ('macos', None, None),
     }.get(OS_NAME, (OS_NAME, MACHINE, None))
 
-    name = '_'.join(filter(None, (
-        'yt-dlp',
-        platform_name,
-        machine,
-    )))
+    name = 'youtube-downloader'
 
     return name, ''.join(filter(None, (
         'dist/',
