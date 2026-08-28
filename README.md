@@ -17,7 +17,7 @@ Xin gửi lời cảm ơn sâu sắc đến đội ngũ phát triển `yt-dlp` c
 - **Dễ sử dụng:** Đã được đóng gói sẵn thành file cài đặt `.exe` dành cho Windows, không cần cài đặt Python, FFmpeg hay gõ lệnh phức tạp.
 
 ## Hướng dẫn cài đặt
-1. **[Tải bộ cài đặt youtube-downloader-setup.exe trực tiếp tại đây]**(https://github.com/huethanh99/youtube-downloader/releases/latest)
+1. **[Tải bộ cài đặt youtube-downloader-setup.exe trực tiếp tại đây](https://github.com/huethanh99/youtube-downloader/releases/latest)**
 2. Chạy file cài đặt, ứng dụng sẽ tự động sao chép các tệp cần thiết (bao gồm cả FFmpeg) vào máy bạn.
 3. Mở ứng dụng từ Desktop, dán đường dẫn (link) video hoặc playlist và bấm tải.
 
