@@ -24,8 +24,8 @@ class YoutubeDownloaderApp(tk.Tk):
         super().__init__()
         self.app_version = "v1.0.0"
         self.core_version = yt_dlp.version.__version__
-        self.title(f"Youtube Downloader {self.app_version} (Lõi yt-dlp {self.core_version})")
-        self.geometry("500x350")
+        self.title(f"Youtube Downloader {self.app_version} (Lõi / Core yt-dlp {self.core_version})")
+        self.geometry("600x400")
         self.resizable(False, False)
         
         # Set icon
@@ -37,13 +37,13 @@ class YoutubeDownloaderApp(tk.Tk):
         
     def create_widgets(self):
         # URL Input
-        ttk.Label(self, text="Đường dẫn Video (URL):").pack(pady=(20, 5), padx=20, anchor="w")
+        ttk.Label(self, text="Đường dẫn Video / Video URL:").pack(pady=(20, 5), padx=20, anchor="w")
         self.url_var = tk.StringVar()
         self.url_entry = ttk.Entry(self, textvariable=self.url_var, width=50)
         self.url_entry.pack(pady=5, padx=20, fill="x")
         
         # Format Selection
-        ttk.Label(self, text="Định dạng và Chất lượng:").pack(pady=(15, 5), padx=20, anchor="w")
+        ttk.Label(self, text="Định dạng và Chất lượng / Format & Quality:").pack(pady=(15, 5), padx=20, anchor="w")
         self.format_var = tk.StringVar(value="video")
         
         frame_formats = ttk.Frame(self)
@@ -55,10 +55,10 @@ class YoutubeDownloaderApp(tk.Tk):
         self.quality_combo = ttk.Combobox(frame_formats, textvariable=self.quality_var, values=["2160p", "1440p", "1080p", "720p", "480p", "360p"], state="readonly", width=8)
         self.quality_combo.pack(side="left", padx=(0, 15))
         
-        ttk.Radiobutton(frame_formats, text="Chỉ Âm thanh (MP3)", variable=self.format_var, value="audio").pack(side="left", padx=5)
+        ttk.Radiobutton(frame_formats, text="Chỉ Âm thanh / Audio only (MP3)", variable=self.format_var, value="audio").pack(side="left", padx=5)
         
         # Destination Folder
-        ttk.Label(self, text="Thư mục lưu:").pack(pady=(15, 5), padx=20, anchor="w")
+        ttk.Label(self, text="Thư mục lưu / Destination:").pack(pady=(15, 5), padx=20, anchor="w")
         
         frame_dest = ttk.Frame(self)
         frame_dest.pack(pady=5, padx=20, fill="x")
@@ -67,18 +67,18 @@ class YoutubeDownloaderApp(tk.Tk):
         self.dest_entry = ttk.Entry(frame_dest, textvariable=self.dest_var)
         self.dest_entry.pack(side="left", fill="x", expand=True, padx=(0, 10))
         
-        ttk.Button(frame_dest, text="Chọn", command=self.browse_folder).pack(side="right")
+        ttk.Button(frame_dest, text="Chọn (Browse)", command=self.browse_folder).pack(side="right")
         
         # Playlist Option
         self.playlist_var = tk.BooleanVar(value=True)
-        ttk.Checkbutton(self, text="Tải toàn bộ danh sách (Playlist) nếu có", variable=self.playlist_var).pack(anchor="w", padx=40, pady=(0, 5))
+        ttk.Checkbutton(self, text="Tải toàn bộ danh sách / Download Playlist nếu có", variable=self.playlist_var).pack(anchor="w", padx=40, pady=(0, 5))
         
         # Subtitle Option
         self.subtitle_var = tk.BooleanVar(value=True)
-        ttk.Checkbutton(self, text="Tải Phụ đề (Tiếng Việt/Anh) nếu có", variable=self.subtitle_var).pack(anchor="w", padx=40, pady=(0, 10))
+        ttk.Checkbutton(self, text="Tải Phụ đề / Download Subtitles (VI/EN) nếu có", variable=self.subtitle_var).pack(anchor="w", padx=40, pady=(0, 10))
         
         # Status Label
-        self.status_var = tk.StringVar(value="Sẵn sàng")
+        self.status_var = tk.StringVar(value="Sẵn sàng (Ready)")
         self.status_label = ttk.Label(self, textvariable=self.status_var, foreground="gray")
         self.status_label.pack(pady=(5, 5), padx=20, anchor="w")
         
@@ -86,10 +86,10 @@ class YoutubeDownloaderApp(tk.Tk):
         frame_buttons = ttk.Frame(self)
         frame_buttons.pack(pady=10)
         
-        self.download_btn = ttk.Button(frame_buttons, text="TẢI XUỐNG", command=self.start_download)
+        self.download_btn = ttk.Button(frame_buttons, text="TẢI XUỐNG (DOWNLOAD)", command=self.start_download)
         self.download_btn.pack(side="left", padx=5)
         
-        self.cancel_btn = ttk.Button(frame_buttons, text="HỦY", command=self.cancel_download, state="disabled")
+        self.cancel_btn = ttk.Button(frame_buttons, text="HỦY (CANCEL)", command=self.cancel_download, state="disabled")
         self.cancel_btn.pack(side="left", padx=5)
         
         self.cancel_flag = False
@@ -97,7 +97,7 @@ class YoutubeDownloaderApp(tk.Tk):
     def cancel_download(self):
         self.cancel_flag = True
         self.cancel_btn.config(state="disabled")
-        self.status_var.set("Đang hủy tải xuống...")
+        self.status_var.set("Đang hủy tải xuống... (Canceling...)")
         
     def browse_folder(self):
         folder = filedialog.askdirectory(initialdir=self.dest_var.get())
@@ -106,7 +106,7 @@ class YoutubeDownloaderApp(tk.Tk):
             
     def my_hook(self, d):
         if self.cancel_flag:
-            raise ValueError("Đã hủy tải xuống")
+            raise ValueError("Đã hủy tải xuống (Canceled)")
             
         if d['status'] == 'downloading':
             percent_str = d.get('_percent_str', '0.0%').strip()
@@ -119,21 +119,21 @@ class YoutubeDownloaderApp(tk.Tk):
             if playlist_idx and playlist_count:
                 prefix = f"[{playlist_idx}/{playlist_count}] "
                 
-            self.status_var.set(f"{prefix}Đang tải... {percent_str}")
+            self.status_var.set(f"{prefix}Đang tải (Downloading)... {percent_str}")
             
         elif d['status'] == 'finished':
-            self.status_var.set("Hoàn tất tải tệp, đang xử lý...")
+            self.status_var.set("Hoàn tất tải tệp, đang xử lý... (Downloaded, processing...)")
         
     def start_download(self):
         url = self.url_var.get().strip()
         if not url:
-            messagebox.showwarning("Lỗi", "Vui lòng nhập đường dẫn video!")
+            messagebox.showwarning("Lỗi (Error)", "Vui lòng nhập đường dẫn video! (Please enter video URL!)")
             return
             
         self.download_btn.config(state="disabled")
         self.cancel_btn.config(state="normal")
         self.cancel_flag = False
-        self.status_var.set("Đang khởi tạo...")
+        self.status_var.set("Đang khởi tạo... (Initializing...)")
         
         # Run in separate thread to not block GUI
         thread = threading.Thread(target=self.download_worker, args=(url,))
@@ -194,15 +194,15 @@ class YoutubeDownloaderApp(tk.Tk):
             with YoutubeDL(ydl_opts) as ydl:
                 ydl.download([url])
             if not self.cancel_flag:
-                self.status_var.set("Tải xuống thành công!")
-                messagebox.showinfo("Thành công", "Đã tải video thành công!")
+                self.status_var.set("Tải xuống thành công! (Successful!)")
+                messagebox.showinfo("Thành công (Success)", "Đã tải video thành công! (Video downloaded successfully!)")
         except Exception as e:
             if "Đã hủy tải xuống" in str(e):
-                self.status_var.set("Đã hủy tải xuống!")
-                messagebox.showinfo("Đã hủy", "Quá trình tải xuống đã bị hủy.")
+                self.status_var.set("Đã hủy tải xuống! (Canceled!)")
+                messagebox.showinfo("Đã hủy (Canceled)", "Quá trình tải xuống đã bị hủy. (Download canceled.)")
             else:
-                self.status_var.set("Đã xảy ra lỗi!")
-                messagebox.showerror("Lỗi tải xuống", f"Lỗi: {str(e)}")
+                self.status_var.set("Đã xảy ra lỗi! (Error!)")
+                messagebox.showerror("Lỗi tải xuống (Download Error)", f"Lỗi (Error): {str(e)}")
         finally:
             self.download_btn.config(state="normal")
             self.cancel_btn.config(state="disabled")

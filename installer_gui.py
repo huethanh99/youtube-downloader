@@ -15,8 +15,8 @@ def resource_path(relative_path):
 class InstallerWizard(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("Cài đặt Youtube Downloader")
-        self.geometry("500x350")
+        self.title("Cài đặt / Install Youtube Downloader")
+        self.geometry("600x400")
         self.resizable(False, False)
         
         # Icon
@@ -30,11 +30,11 @@ class InstallerWizard(tk.Tk):
         
     def create_widgets(self):
         # Header
-        header = ttk.Label(self, text="Chào mừng đến với trình cài đặt\nYoutube Downloader", font=("Segoe UI", 16, "bold"), justify="center")
-        header.pack(pady=30)
+        header = ttk.Label(self, text="Chào mừng đến với trình cài đặt\nWelcome to the installer of\nYoutube Downloader", font=("Segoe UI", 16, "bold"), justify="center")
+        header.pack(pady=20)
         
         # Dest folder
-        ttk.Label(self, text="Thư mục cài đặt:").pack(anchor="w", padx=40)
+        ttk.Label(self, text="Thư mục cài đặt / Installation folder:").pack(anchor="w", padx=40)
         
         frame_dest = ttk.Frame(self)
         frame_dest.pack(fill="x", padx=40, pady=5)
@@ -42,14 +42,14 @@ class InstallerWizard(tk.Tk):
         default_path = os.path.join(os.environ.get("ProgramFiles", "C:\\Program Files"), "Youtube Downloader")
         self.dest_var = tk.StringVar(value=default_path)
         ttk.Entry(frame_dest, textvariable=self.dest_var).pack(side="left", fill="x", expand=True, padx=(0, 10))
-        ttk.Button(frame_dest, text="Duyệt...", command=self.browse).pack(side="right")
+        ttk.Button(frame_dest, text="Duyệt (Browse)...", command=self.browse).pack(side="right")
         
         # Options
         self.shortcut_var = tk.BooleanVar(value=True)
-        ttk.Checkbutton(self, text="Tạo biểu tượng ngoài Desktop", variable=self.shortcut_var).pack(anchor="w", padx=40, pady=15)
+        ttk.Checkbutton(self, text="Tạo biểu tượng ngoài Desktop / Create Desktop shortcut", variable=self.shortcut_var).pack(anchor="w", padx=40, pady=15)
         
         # Install Button
-        self.btn_install = ttk.Button(self, text="CÀI ĐẶT NGAY", command=self.install)
+        self.btn_install = ttk.Button(self, text="CÀI ĐẶT NGAY (INSTALL NOW)", command=self.install)
         self.btn_install.pack(pady=30)
         
     def browse(self):
@@ -66,10 +66,10 @@ class InstallerWizard(tk.Tk):
             app_exe_path = os.path.join("dist", "youtube-downloader.exe")
             
         if not os.path.exists(app_exe_path):
-            messagebox.showerror("Lỗi", "Không tìm thấy file nguồn cài đặt (youtube-downloader.exe)")
+            messagebox.showerror("Lỗi (Error)", "Không tìm thấy file nguồn cài đặt / Source file not found (youtube-downloader.exe)")
             return
             
-        self.btn_install.config(text="Đang cài đặt...", state="disabled")
+        self.btn_install.config(text="Đang cài đặt... (Installing...)", state="disabled")
         self.update()
         
         try:
@@ -89,11 +89,11 @@ class InstallerWizard(tk.Tk):
             if self.shortcut_var.get():
                 self.create_desktop_shortcut(target_exe, target_icon)
                 
-            messagebox.showinfo("Thành công", "Đã cài đặt Youtube Downloader thành công!")
+            messagebox.showinfo("Thành công (Success)", "Đã cài đặt Youtube Downloader thành công! (Successfully installed!)")
             self.destroy()
         except Exception as e:
-            messagebox.showerror("Lỗi", f"Không thể cài đặt: {str(e)}\n\nVui lòng thử chạy file cài đặt với quyền Administrator (Run as administrator).")
-            self.btn_install.config(text="CÀI ĐẶT NGAY", state="normal")
+            messagebox.showerror("Lỗi (Error)", f"Không thể cài đặt / Failed to install: {str(e)}\n\nVui lòng thử chạy file cài đặt với quyền Administrator (Run as administrator).")
+            self.btn_install.config(text="CÀI ĐẶT NGAY (INSTALL NOW)", state="normal")
             
     def create_desktop_shortcut(self, target, icon):
         desktop = os.path.join(os.environ["USERPROFILE"], "Desktop")
