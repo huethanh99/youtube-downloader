@@ -22,10 +22,11 @@ def resource_path(relative_path):
 class YoutubeDownloaderApp(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.app_version = "v1.0.0"
+        self.app_version = "v1.0.1"
         self.core_version = yt_dlp.version.__version__
         self.title(f"Youtube Downloader {self.app_version} (Lõi / Core yt-dlp {self.core_version})")
-        self.geometry("600x400")
+        self.geometry("650x450")
+        self.minsize(600, 400)
         self.resizable(True, True)
         
         # Set icon
@@ -36,17 +37,20 @@ class YoutubeDownloaderApp(tk.Tk):
         self.create_widgets()
         
     def create_widgets(self):
+        main_frame = ttk.Frame(self)
+        main_frame.pack(fill="both", expand=True, padx=10, pady=10)
+        
         # URL Input
-        ttk.Label(self, text="Đường dẫn Video / Video URL:").pack(pady=(20, 5), padx=20, anchor="w")
+        ttk.Label(main_frame, text="Đường dẫn Video / Video URL:").pack(pady=(20, 5), padx=20, anchor="w")
         self.url_var = tk.StringVar()
-        self.url_entry = ttk.Entry(self, textvariable=self.url_var, width=50)
+        self.url_entry = ttk.Entry(main_frame, textvariable=self.url_var, width=50)
         self.url_entry.pack(pady=5, padx=20, fill="x")
         
         # Format Selection
-        ttk.Label(self, text="Định dạng và Chất lượng / Format & Quality:").pack(pady=(15, 5), padx=20, anchor="w")
+        ttk.Label(main_frame, text="Định dạng và Chất lượng / Format & Quality:").pack(pady=(15, 5), padx=20, anchor="w")
         self.format_var = tk.StringVar(value="video")
         
-        frame_formats = ttk.Frame(self)
+        frame_formats = ttk.Frame(main_frame)
         frame_formats.pack(pady=5, padx=20, fill="x")
         
         ttk.Radiobutton(frame_formats, text="Video (MP4)", variable=self.format_var, value="video").pack(side="left", padx=5)
@@ -58,9 +62,9 @@ class YoutubeDownloaderApp(tk.Tk):
         ttk.Radiobutton(frame_formats, text="Chỉ Âm thanh / Audio only (MP3)", variable=self.format_var, value="audio").pack(side="left", padx=5)
         
         # Destination Folder
-        ttk.Label(self, text="Thư mục lưu / Destination:").pack(pady=(15, 5), padx=20, anchor="w")
+        ttk.Label(main_frame, text="Thư mục lưu / Destination:").pack(pady=(15, 5), padx=20, anchor="w")
         
-        frame_dest = ttk.Frame(self)
+        frame_dest = ttk.Frame(main_frame)
         frame_dest.pack(pady=5, padx=20, fill="x")
         
         self.dest_var = tk.StringVar(value=os.path.expanduser("~\\Downloads"))
@@ -71,19 +75,19 @@ class YoutubeDownloaderApp(tk.Tk):
         
         # Playlist Option
         self.playlist_var = tk.BooleanVar(value=True)
-        ttk.Checkbutton(self, text="Tải toàn bộ danh sách / Download Playlist nếu có", variable=self.playlist_var).pack(anchor="w", padx=40, pady=(0, 5))
+        ttk.Checkbutton(main_frame, text="Tải toàn bộ danh sách / Download Playlist nếu có", variable=self.playlist_var).pack(anchor="w", padx=40, pady=(0, 5))
         
         # Subtitle Option
         self.subtitle_var = tk.BooleanVar(value=True)
-        ttk.Checkbutton(self, text="Tải Phụ đề / Download Subtitles (VI/EN) nếu có", variable=self.subtitle_var).pack(anchor="w", padx=40, pady=(0, 10))
+        ttk.Checkbutton(main_frame, text="Tải Phụ đề / Download Subtitles (VI/EN) nếu có", variable=self.subtitle_var).pack(anchor="w", padx=40, pady=(0, 10))
         
         # Status Label
         self.status_var = tk.StringVar(value="Sẵn sàng (Ready)")
-        self.status_label = ttk.Label(self, textvariable=self.status_var, foreground="gray")
+        self.status_label = ttk.Label(main_frame, textvariable=self.status_var, foreground="gray")
         self.status_label.pack(pady=(5, 5), padx=20, anchor="w")
         
         # Buttons frame
-        frame_buttons = ttk.Frame(self)
+        frame_buttons = ttk.Frame(main_frame)
         frame_buttons.pack(pady=10)
         
         self.download_btn = ttk.Button(frame_buttons, text="TẢI XUỐNG (DOWNLOAD)", command=self.start_download)
