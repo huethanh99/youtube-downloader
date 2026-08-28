@@ -165,8 +165,10 @@ class YoutubeDownloaderApp(tk.Tk):
             'fragment_retries': 10
         }
         
+        import platform
         ffmpeg_dir = resource_path("bin")
-        ffmpeg_exe = os.path.join(ffmpeg_dir, "ffmpeg.exe")
+        ffmpeg_name = "ffmpeg.exe" if platform.system() == "Windows" else "ffmpeg"
+        ffmpeg_exe = os.path.join(ffmpeg_dir, ffmpeg_name)
         if os.path.exists(ffmpeg_exe):
             ydl_opts['ffmpeg_location'] = ffmpeg_exe
         else:
