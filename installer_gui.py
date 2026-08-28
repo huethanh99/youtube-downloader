@@ -17,7 +17,7 @@ class InstallerWizard(tk.Tk):
         super().__init__()
         self.title("Cài đặt / Install Youtube Downloader")
         self.geometry("600x400")
-        self.resizable(False, False)
+        self.resizable(True, True)
         
         # Icon
         icon_path = resource_path(os.path.join("devscripts", "logo.ico"))
