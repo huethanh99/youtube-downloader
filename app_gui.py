@@ -26,7 +26,7 @@ class YoutubeDownloaderApp(tk.Tk):
         self.core_version = yt_dlp.version.__version__
         self.title(f"Youtube Downloader {self.app_version} (Lõi / Core yt-dlp {self.core_version})")
         self.geometry("600x400")
-        self.resizable(False, False)
+        self.resizable(True, True)
         
         # Set icon
         icon_path = resource_path(os.path.join("devscripts", "logo.ico"))
