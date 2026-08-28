@@ -6,7 +6,7 @@ Một ứng dụng tải video YouTube đơn giản, trực quan (GUI) được 
 
 Ứng dụng này sẽ không thể tồn tại nếu không có bộ lõi xử lý tuyệt vời từ dự án [yt-dlp](https://github.com/yt-dlp/yt-dlp). 
 
-Chúng tôi xin gửi lời cảm ơn sâu sắc đến đội ngũ phát triển `yt-dlp` cùng cộng đồng mã nguồn mở đã ngày đêm duy trì và tạo ra công cụ dòng lệnh tải video mạnh mẽ nhất thế giới. Dự án này tôn trọng, kế thừa trọn vẹn sức mạnh xử lý của `yt-dlp` gốc, và chỉ đóng góp thêm một lớp giao diện đồ họa (GUI) nhằm giúp những người dùng không chuyên về kỹ thuật cũng có thể dễ dàng tiếp cận và sử dụng công cụ tuyệt vời này.
+Tôi xin gửi lời cảm ơn sâu sắc đến đội ngũ phát triển `yt-dlp` cùng cộng đồng mã nguồn mở đã ngày đêm duy trì và tạo ra công cụ dòng lệnh tải video mạnh mẽ nhất thế giới. Dự án này tôn trọng, kế thừa trọn vẹn sức mạnh xử lý của `yt-dlp` gốc, và chỉ đóng góp thêm một lớp giao diện đồ họa (GUI) nhằm giúp những người dùng không chuyên về kỹ thuật cũng có thể dễ dàng tiếp cận và sử dụng công cụ tuyệt vời này.
 
 ---
 
@@ -17,7 +17,7 @@ Chúng tôi xin gửi lời cảm ơn sâu sắc đến đội ngũ phát triể
 - **Dễ sử dụng:** Đã được đóng gói sẵn thành file cài đặt `.exe` dành cho Windows, không cần cài đặt Python, FFmpeg hay gõ lệnh phức tạp.
 
 ## Hướng dẫn cài đặt
-1. Tải bộ cài đặt `youtube-downloader-setup.exe` trong thư mục `dist` của mã nguồn (hoặc tải từ phần Releases).
+1. **[Tải bộ cài đặt youtube-downloader-setup.exe tại đây](dist/youtube-downloader-setup.exe)** (hoặc tự truy cập vào thư mục `dist` của mã nguồn để tải).
 2. Chạy file cài đặt, ứng dụng sẽ tự động sao chép các tệp cần thiết (bao gồm cả FFmpeg) vào máy bạn.
 3. Mở ứng dụng từ Desktop, dán đường dẫn (link) video hoặc playlist và bấm tải.
 
