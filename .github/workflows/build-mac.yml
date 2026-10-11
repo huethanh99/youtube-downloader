@@ -50,4 +50,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload v1.0.0 "dist/Youtube-Downloader-Mac.zip" --clobber
+          gh release create v1.1.0 "dist/Youtube-Downloader-Mac.zip" --title "Youtube Downloader v1.1.0" --notes "Phiên bản v1.1.0: Bổ sung tính năng dán nhiều link video/playlist tải hàng loạt cùng lúc." --latest || gh release upload v1.1.0 "dist/Youtube-Downloader-Mac.zip" --clobber
