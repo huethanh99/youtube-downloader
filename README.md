@@ -11,6 +11,7 @@ Xin gửi lời cảm ơn sâu sắc đến đội ngũ phát triển `yt-dlp` c
 ---
 
 ## Các Tính năng Chính
+- **Tải nhiều link cùng lúc (Batch Download):** Hỗ trợ dán nhiều đường dẫn video/playlist cùng lúc (mỗi link một dòng hoặc cách nhau bởi dấu phẩy/khoảng trắng) để tải hàng loạt tự động.
 - **Tải Playlist thông minh:** Hỗ trợ tải toàn bộ danh sách phát. Tự động lướt qua các video bị lỗi (như lỗi 500) hoặc các video đã tải rồi để tiếp tục quá trình tải mà không bị gián đoạn.
 - **Tải Video & Âm thanh:** Lựa chọn linh hoạt tải Video (có thể chọn độ phân giải tối đa lên tới 1080p, 4K) hoặc chỉ tải Âm thanh (Audio mp3 chất lượng cao).
 - **Tự động nhúng Phụ đề:** Có tùy chọn tự động tải và nhúng thẳng phụ đề (Việt/Anh) vào video.
